@@ -1,0 +1,30 @@
+IgnoreUnknown UseKeychain
+UseKeychain yes
+
+Include ~/.ssh/*.d/config
+
+Host *
+  LogLevel ERROR
+  AddressFamily inet
+  Compression yes
+  ControlMaster auto
+  ControlPath ~/.ssh/s_cm.%C
+  ControlPersist 5m
+  ForwardAgent yes
+  ForwardX11 no
+  ForwardX11Trusted no
+  Port 22
+  Protocol 2
+  ServerAliveInterval 60
+  ServerAliveCountMax 30
+  IdentitiesOnly no
+  PasswordAuthentication yes
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  VisualHostKey yes
+
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519
+  ControlMaster no

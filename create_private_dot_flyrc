@@ -1,0 +1,7 @@
+targets:
+  l0cal:
+    api: https://ci.l0cal.net
+    team: main
+    token:
+      type: bearer
+      value: -

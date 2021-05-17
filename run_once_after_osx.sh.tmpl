@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+if [[ "{{ .chezmoi.os }}" != "darwin" ]]; then
+  exit 0
+fi
+
+## hostname
+COMPUTER_NAME={{ lower .system_uuid }}
+
+# Overrides for the guys behind the wall (Business Tech)
+case $COMPUTER_NAME in
+  ba1c3e9b-68ee-5454-91f8-b3d2b9a08ed6)
+    COMPUTER_NAME="CA-MBP-646"
+    ;;
+esac
+
+(
+  sudo scutil --set ComputerName $COMPUTER_NAME
+  sudo scutil --set HostName $COMPUTER_NAME
+  sudo scutil --set LocalHostName $COMPUTER_NAME
+  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $COMPUTER_NAME
+) > /dev/null
+
+## Global system configuration
+(
+  sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+  sudo systemsetup -setrestartfreeze on
+  sudo systemsetup -setcomputersleep off
+  sudo systemsetup -setusingnetworktime on
+) > /dev/null
+
+## System configuration
+(
+  defaults write NSGlobalDomain AppleHighlightColor -string "1.000000 0.874510 0.701961"
+  defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+  defaults write NSGlobalDomain _HIHideMenuBar -bool true
+  defaults write com.apple.dock autohide -bool true
+  defaults write com.apple.screensaver askForPassword -int 1
+  defaults write com.apple.screensaver askForPasswordDelay -int 5
+  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+  defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+  defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+  defaults write com.apple.Safari AutoFillFromAddressBook -bool false
+  defaults write com.apple.Safari AutoFillPasswords -bool false
+  defaults write com.apple.Safari AutoFillCreditCardData -bool false
+  defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
+  defaults write com.apple.Safari WebKitJavaEnabled -bool false
+  defaults write com.apple.Safari ShowOverlayStatusBar -bool true
+  defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool false
+  defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false
+  defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+  defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+) > /dev/null
+
+## Forklift-3
+(
+  defaults write com.binarynights.ForkLift-3 SetupDone -bool true
+  defaults write com.binarynights.ForkLift-3 DarkMode -bool true
+  defaults write com.binarynights.ForkLift-3 ShowPreview -bool false
+  defaults write com.binarynights.ForkLift-3 TreatArchivesAsFolders -bool true
+  defaults write com.binarynights.ForkLift-3 ForkLiftMiniEnabled -bool false
+  defaults write com.binarynights.ForkLift-3 DefaultListViewSettings -dict-add ShowHiddenFiles -bool true
+) > /dev/null
+
+## iTerm2
+(
+  defaults write com.googlecode.iterm2 CopySelection -bool false
+) > /dev/null

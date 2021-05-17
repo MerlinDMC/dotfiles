@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [[ "{{ .chezmoi.os }}" != "darwin" ]]; then
+  exit 0
+fi
+
+## Homebrew
+HOMEBREW_BIN_DIR="{{ .homebrew_bin_dir }}"
+
+if [[ ! -x "${HOMEBREW_BIN_DIR}/brew" ]]; then
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+export PATH=$PATH:$HOMEBREW_BIN_DIR
+
+( cd "{{ .chezmoi.sourceDir }}"
+  brew bundle
+)

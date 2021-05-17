@@ -1,0 +1,15 @@
+{{- $name := "Daniel Malon" -}}
+{{- $email := "daniel.malon@me.com" -}}
+{{- $gpg_keyid := "FCB97856BBA5B14D" -}}
+{{- $github_user := "MerlinDMC" -}}
+{{- $system_uuid := index ioreg "IORegistryEntryChildren" 0 "IOPlatformUUID" -}}
+
+data:
+  email: {{ $email }}
+  name: {{ $name }}
+  gpg_keyid: {{ $gpg_keyid }}
+  github_user: {{ $github_user }}
+  system_uuid: {{ $system_uuid }}
+  homebrew_bin_dir: {{ (eq .chezmoi.arch "arm64") | ternary "/opt/homebrew/bin" "/usr/local/bin" }}
+
+encryption: gpg

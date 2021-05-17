@@ -1,0 +1,86 @@
+[user]
+  name = {{ .name }}
+  email = {{ .email }}
+  signingKey = {{ .gpg_keyid }}
+
+[commit]
+  gpgsign = true
+
+[github]
+  user = {{ .github_user }}
+
+[diff]
+  compactionHeuristic = true
+
+[mergetool]
+  keepBackup = true
+
+[rerere]
+  enabled = true
+
+[color]
+  ui = true
+
+[push]
+  default = simple
+
+[core]
+  excludesfile = {{ .chezmoi.homeDir }}/.gitignore_global
+  # pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[format]
+  pretty = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+  graph = true
+
+[advice]
+  statusHints = false
+
+[log]
+  abbrevCommit = true
+
+# URL shorthands
+# gh:user/repo
+[url "git@github.com:"]
+  insteadOf = "gh:"
+#  insteadOf = "https://github.com/"
+  pushInsteadOf = "gh:"
+  pushInsteadOf = "git://github.com/"
+
+# gist:3928760
+[url "git@gist.github.com:"]
+  insteadOf = "gist:"
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+
+[magit]
+  hideCampaign = true
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
+[pull]
+  rebase = true
+
+[delta]
+  features = side-by-side line-numbers decorations
+  syntax-theme = Dracula
+  plus-style = syntax "#003800"
+  minus-style = syntax "#3f0001"
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+  hunk-header-decoration-style = cyan box ul
+
+[delta "line-numbers"]
+  line-numbers-left-style = cyan
+  line-numbers-right-style = cyan
+  line-numbers-minus-style = 124
+  line-numbers-plus-style = 28
