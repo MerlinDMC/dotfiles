@@ -15,7 +15,6 @@ mas "1Password 7", id: 1333542190
 mas "Magnet", id: 441258766
 
 # brew
-brew "1password-cli"
 brew "coreutils"
 brew "pbzip2"
 brew "xz"
@@ -55,6 +54,7 @@ brew "borgmatic"
 brew "fish"
 brew "burntsushi/ripgrep/ripgrep-bin"
 
+cask "1password-cli"
 cask "docker"
 cask "forklift"
 cask "google-chrome"
