@@ -14,5 +14,5 @@ fi
 export PATH=$PATH:$HOMEBREW_BIN_DIR
 
 ( cd "{{ .chezmoi.sourceDir }}"
-  brew bundle
+  chezmoi execute-template < Brewfile | brew bundle --file=-
 )

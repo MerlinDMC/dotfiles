@@ -65,7 +65,9 @@ cask "vlc"
 cask "sublime-text"
 cask "iterm2"
 cask "keybase"
-cask "pritunl"
+{{ if (eq (lower .system_uuid) "ba1c3e9b-68ee-5454-91f8-b3d2b9a08ed6") -}}
+cask "aviatrix-vpn-client"
+{{ end -}}
 cask "jetbrains-toolbox"
 cask "omnifocus"
 cask "pgadmin4"
