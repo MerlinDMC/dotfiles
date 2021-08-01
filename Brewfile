@@ -57,7 +57,7 @@ brew "burntsushi/ripgrep/ripgrep-bin"
 cask "1password-cli"
 cask "docker"
 cask "forklift"
-cask "google-chrome"
+cask "google-chrome", args: { require_sha: false }
 cask "brave-browser"
 cask "studio-3t"
 cask "slack"
@@ -66,7 +66,7 @@ cask "sublime-text"
 cask "iterm2"
 cask "keybase"
 {{ if (eq (lower .system_uuid) "ba1c3e9b-68ee-5454-91f8-b3d2b9a08ed6") -}}
-cask "aviatrix-vpn-client"
+cask "aviatrix-vpn-client", args: { require_sha: false }
 {{ end -}}
 cask "jetbrains-toolbox"
 cask "omnifocus"
