@@ -4,12 +4,15 @@
 {{- $github_user := "MerlinDMC" -}}
 {{- $system_uuid := index ioreg "IORegistryEntryChildren" 0 "IOPlatformUUID" -}}
 
+{{- $container_solution := promptString "Container Solution [docker|lima]" -}}
+
 data:
   email: {{ $email }}
   name: {{ $name }}
   gpg_keyid: {{ $gpg_keyid }}
   github_user: {{ $github_user }}
   system_uuid: {{ $system_uuid }}
+  container_solution: {{ $container_solution }}
   homebrew_bin_dir: {{ (eq .chezmoi.arch "arm64") | ternary "/opt/homebrew/bin" "/usr/local/bin" }}
 
 encryption: gpg

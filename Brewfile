@@ -58,7 +58,6 @@ brew "fish"
 brew "burntsushi/ripgrep/ripgrep-bin"
 
 cask "1password-cli"
-cask "docker"
 cask "forklift"
 cask "google-chrome", args: { require_sha: false }
 cask "brave-browser"
@@ -67,19 +66,25 @@ cask "slack"
 cask "vlc"
 cask "sublime-text"
 cask "iterm2"
-cask "keybase"
-{{ if (eq (lower .system_uuid) "ba1c3e9b-68ee-5454-91f8-b3d2b9a08ed6") -}}
-cask "aviatrix-vpn-client", args: { require_sha: false }
-{{ end -}}
 cask "jetbrains-toolbox"
 cask "omnifocus"
 cask "pgadmin4"
 cask "zoom"
 cask "vyprvpn"
-cask "transmission"
 cask "font-mononoki"
 cask "font-ibm-plex"
 cask "font-jetbrains-mono"
 cask "font-iosevka"
 
 cask "emacs-mac-spacemacs-icon"
+
+{{ if (eq (lower .chezmoi.arch) "amd64") -}}
+cask "transmission"
+cask "keybase"
+{{ end -}}
+
+{{ if (eq .container_solution "docker") -}}
+cask "docker"
+{{ else if (eq .container_solution "lima") -}}
+brew "lima"
+{{ end -}}
