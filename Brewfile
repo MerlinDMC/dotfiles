@@ -13,6 +13,7 @@ brew "mas"
 # Appstore
 mas "1Password 7", id: 1333542190
 mas "Magnet", id: 441258766
+mas "Malwarebytes Browser Guard", id: 1577761052
 
 # brew
 brew "coreutils"
