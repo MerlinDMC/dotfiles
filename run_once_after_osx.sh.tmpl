@@ -24,9 +24,9 @@ esac
 ## Global system configuration
 (
   sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
-  sudo systemsetup -setrestartfreeze on
-  sudo systemsetup -setcomputersleep off
-  sudo systemsetup -setusingnetworktime on
+  sudo systemsetup -setrestartfreeze on || true
+  sudo systemsetup -setcomputersleep off || true
+  sudo systemsetup -setusingnetworktime on || true
 ) > /dev/null
 
 ## System configuration
