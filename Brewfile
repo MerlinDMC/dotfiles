@@ -1,3 +1,5 @@
+# -*- mode: ruby -*-
+
 # Taps
 tap "railwaycat/emacsmacport"
 tap "homebrew/cask-versions"
