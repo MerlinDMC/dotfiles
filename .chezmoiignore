@@ -2,3 +2,5 @@ LICENSE
 Brewfile
 Brewfile.lock.json
 install.sh
+README.md
+TODO.md
