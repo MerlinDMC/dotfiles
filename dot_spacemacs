@@ -96,6 +96,7 @@ This function should only modify configuration layer settings."
      vue
      python
      ansible
+     cfengine
      terraform
      systemd
      docker
