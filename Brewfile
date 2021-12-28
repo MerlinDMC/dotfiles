@@ -93,3 +93,7 @@ cask "docker"
 {{ else if (eq .container_solution "lima") -}}
 brew "lima"
 {{ end -}}
+
+{{ if (eq (lower .system_uuid) "992fda70-905e-5334-912a-990e4a9f89a1") -}}
+cask "autodesk-fusion360", args: { require_sha: false }
+{{ end -}}
