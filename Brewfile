@@ -55,7 +55,12 @@ brew "mycli"
 brew "awscli"
 brew "borgmatic"
 brew "fish"
+
+{{ if (eq (lower .chezmoi.arch) "amd64") -}}
 brew "burntsushi/ripgrep/ripgrep-bin"
+{{ else -}}
+brew "ripgrep"
+{{ end -}}
 
 cask "1password-cli"
 cask "forklift"
