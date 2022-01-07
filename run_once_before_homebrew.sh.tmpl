@@ -4,6 +4,10 @@ if [[ "{{ .chezmoi.os }}" != "darwin" ]]; then
   exit 0
 fi
 
+{{ if (eq (lower .chezmoi.arch) "arm64") -}}
+softwareupdate --install-rosetta
+{{ end -}}
+
 ## Homebrew
 HOMEBREW_BIN_DIR="{{ .homebrew_bin_dir }}"
 
