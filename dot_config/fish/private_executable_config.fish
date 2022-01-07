@@ -3,14 +3,6 @@
 # I know where I am.
 set fish_greeting ""
 
-function _add_to_path --description 'Add one or more directories to PATH'
-  for val in $argv
-#    if test -d $val
-      set -U PATH $val $PATH
-#    end
-  end
-end
-
 set -U fish_user_paths \
   $HOME/.exenv/shims \
   $HOME/.goenv/shims \
@@ -34,3 +26,10 @@ set -U TF_PLUGIN_CACHE_DIR "$HOME/.terraform.d/plugin-cache"
 
 # Preferred editor for local and remote sessions
 set -U EDITOR 'vim'
+
+# kubectl configurations
+set -l KUBECONFIGS $HOME/.kube/config
+for name in $HOME/.kube/kubeconfig-*.yaml;
+    set -a KUBECONFIGS $name
+end
+set -Ux KUBECONFIG (string join ':' $KUBECONFIGS)
