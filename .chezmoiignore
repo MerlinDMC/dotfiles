@@ -3,5 +3,6 @@ Brewfile
 Brewfile.lock.json
 install.sh
 homebrew.sh
+spacemacs.sh
 README.md
 TODO.md
